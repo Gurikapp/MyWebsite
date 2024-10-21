@@ -1,0 +1,7 @@
+.blackAndWhiteFilter {
+    filter: grayscale(1);
+    transition: 1s;
+}
+.blackAndWhiteFilter:hover {
+    filter: grayscale(0);
+}
