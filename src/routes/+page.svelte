@@ -3,6 +3,10 @@
 	import { goto } from '$app/navigation';
 </script>
 
+<svelte:head>
+	<title>Главная</title>
+</svelte:head>
+
 <section class="block1">
 	<div class="block1-mainline">
 		<div class="block1-line-left"></div>
@@ -53,9 +57,9 @@
 			>.
 		</p>
 	</div>
-	<img class="block3-img-first blackAndWhiteFilter" src="/images/photos/IMG_(29).JPG" alt="" />
-	<img class="block3-img-second blackAndWhiteFilter" src="/images/photos/IMG_(42).JPG" alt="" />
-	<img class="block3-img-third blackAndWhiteFilter" src="/images/photos/IMG_(47).JPG" alt="" />
+	<img class="block3-img-first block3-img blackAndWhiteFilter" src="/images/photos/IMG_(29).JPG" alt="" />
+	<img class="block3-img-second block3-img blackAndWhiteFilter" src="/images/photos/IMG_(42).JPG" alt="" />
+	<img class="block3-img-third block3-img blackAndWhiteFilter" src="/images/photos/IMG_(47).JPG" alt="" />
 </section>
 
 <section class="block4">
@@ -100,7 +104,9 @@
 			/>
 		</div>
 	</div>
-	<button class="block4-gallerybtn" type="button" on:click={() => goto("/gallery")}>Больше фото <span></span>&#10093</button>
+	<button class="block4-gallerybtn" type="button" on:click={() => goto('/gallery')}
+		>Больше фото <span></span>&#10093</button
+	>
 </section>
 
 <style lang="scss">
@@ -113,6 +119,12 @@
 		padding-top: 15%;
 		padding-bottom: 4%;
 		height: 100vh;
+		@media (max-width: 800px) {
+			height: auto;
+		}
+		@media (max-width: 700px) {
+			padding-top: 27%;
+		}
 		.block1-mainline {
 			display: flex;
 			flex-direction: column;
@@ -137,6 +149,9 @@
 				font-style: normal;
 				font-size: 100px;
 				z-index: 2;
+				@media (max-width: 750px) {
+					font-size: 60px;
+				}
 			}
 			.block1-mainline-bottom {
 				margin-left: 20%;
@@ -147,6 +162,9 @@
 				font-style: normal;
 				font-size: 100px;
 				z-index: 2;
+				@media (max-width: 750px) {
+					font-size: 60px;
+				}
 			}
 			.block1-line-right {
 				border-top: #ffffff66 1px solid;
@@ -159,12 +177,20 @@
 				position: absolute;
 				top: 0;
 				left: 10%;
+				@media (max-width: 890px) {
+					width: 40%;
+					height: auto;
+				}
 			}
 			.block1-mainline-img-bottom {
 				height: 85%;
 				position: absolute;
 				top: 15%;
 				right: 4%;
+				@media (max-width: 890px) {
+					width: 35%;
+					height: auto;
+				}
 			}
 		}
 	}
@@ -235,6 +261,15 @@
 			top: 5%;
 			left: 10%;
 			z-index: 4;
+			@media (max-width: 700px) {
+				width: auto;
+				height: 50%;
+			}
+			@media (max-width: 570px) {
+				top: 45%;
+				width: auto;
+				height: 40%;
+			}
 		}
 		.block2-img-bottom {
 			height: 80%;
@@ -242,6 +277,15 @@
 			top: 10%;
 			left: 20%;
 			z-index: 3;
+			@media (max-width: 700px) {
+				width: auto;
+				height: 50%;
+			}
+			@media (max-width: 570px) {
+				top: 50%;
+				width: auto;
+				height: 40%;
+			}
 		}
 	}
 
@@ -306,26 +350,43 @@
 				}
 			}
 		}
-		.block3-img-first {
+		.block3-img{
 			height: 80%;
 			position: absolute;
 			top: 15%;
+			z-index: 3;
+			@media (max-width: 1120px) {
+				width: auto;
+				height: 60%;
+			}
+			@media (max-width: 920px) {
+				width: auto;
+				height: 40%;
+			}
+			@media (max-width: 770px) {
+				display: none;
+			}
+		}
+		.block3-img-first {
 			right: 27%;
-			z-index: 4;
+			@media (max-width: 1120px) {
+				right: 21%;
+			}
+			@media (max-width: 920px) {
+				right: 13%;
+			}
 		}
 		.block3-img-second {
-			height: 80%;
-			position: absolute;
-			top: 15%;
 			right: 11%;
-			z-index: 3;
+			@media (max-width: 1120px) {
+				right: 8%;
+			}
+			@media (max-width: 920px) {
+				right: 4%;
+			}
 		}
 		.block3-img-third {
-			height: 80%;
-			position: absolute;
-			top: 15%;
 			right: -5%;
-			z-index: 3;
 		}
 	}
 
@@ -382,27 +443,38 @@
 				gap: 10px;
 			}
 		}
-		.block4-gallerybtn{
+		.block4-gallerybtn {
 			display: inline-block;
 			position: absolute;
 			top: 50%;
-			left: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			z-index: 4;
 			background: none;
 			color: white;
+			text-align: center;
 			font-family: 'Amatic SC', serif;
 			font-weight: 400;
 			font-style: normal;
 			font-size: 100px;
 			transition: 500ms;
-			span{
+			@media (max-width: 830px) {
+				font-size: 80px;
+			}
+			@media (max-width: 650px) {
+				font-size: 60px;
+			}
+			@media (max-width: 490px) {
+				font-size: 40px;
+			}
+			span {
 				transition: 500ms;
 			}
-			&:hover{
+			&:hover {
 				color: #d1d1d1;
-				span{
-				margin: 10px;
-			}
+				span {
+					margin: 10px;
+				}
 			}
 		}
 	}

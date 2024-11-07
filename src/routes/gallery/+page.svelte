@@ -30,6 +30,17 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Галлерея</title>
+</svelte:head>
+
+<section class="switch">
+	<span class="switcher switcher-2 remove-filter">
+		<input type="checkbox" id="switcher-2" on:change={toggleGrayscale} />
+		<label for="switcher-2"></label>
+	</span>
+</section>
+
 <section class="gallery" id="gallery">
 	{#each imageNames as imageName, index}
 		<div class="image-container" on:click={() => openFullscreen(index)}>
@@ -48,196 +59,206 @@
 			</span>
 		</div>
 	{/if}
-	<span class="switcher switcher-2 remove-filter">
-		<input type="checkbox" id="switcher-2" on:change={toggleGrayscale} />
-		<label for="switcher-2"></label>
-	</span>
 </section>
 
 <style lang="scss">
-	.gallery {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 30px;
-		background: #000;
-		padding-top: 14%;
-		padding-bottom: 10%;
-		background-image: url(/images/Block1_Back.png);
-		position: relative;
-		.remove-filter {
-			position: absolute;
-			top: 3%;
-			left: 42%;
-		}
-	}
-
-	.image-container {
+	.switch {
 		display: flex;
-		justify-content: center;
-		cursor: pointer;
-	}
-
-	.image-container img {
-		height: 200px;
-		transition: transform 0.3s ease;
-	}
-
-	.grey-image {
-		filter: grayscale(1);
-		transition: filter 1s;
-	}
-
-	.grey-image:hover {
-		filter: grayscale(0);
-	}
-
-	.fullscreen {
-		display: flex;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.9);
-		justify-content: center;
+		flex-direction: column;
 		align-items: center;
-		z-index: 1000;
-	}
-
-	.fullscreen img {
-		max-width: 90%;
-		max-height: 90%;
-	}
-
-	.arrow {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		font-size: 40px;
-		color: #a1a1a1;
-		cursor: pointer;
-	}
-
-	.arrow-left {
-		left: 20px;
-	}
-
-	.arrow-right {
-		right: 20px;
-	}
-
-	@media (max-width: 700px) {
-		.gallery {
-			grid-template-columns: 1fr;
-			padding-top: 28%;
+		justify-content: center;
+		padding-top: 8%;
+		background-image: url(/images/Block1_Back.png);
+		@media (max-width: 700px) {
+			padding-top: 50%;
 		}
-	}
 
-	$black: #1e1e1e;
-	$white: #fff;
-
-	span.switcher {
-		position: relative;
-
-		width: 200px;
-		height: 50px;
-		border-radius: 25px;
-		margin: 20px 0;
-		input {
-			appearance: none;
-
+		$black: #1e1e1e;
+		$white: #fff;
+		span.switcher {
 			position: relative;
 
 			width: 200px;
 			height: 50px;
 			border-radius: 25px;
-
-			background-color: $black;
-			outline: none;
-
-			font-family: 'Amatic SC', serif;
-			font-weight: 700;
-			font-style: normal;
-			font-size: 20px;
-			&:before,
-			&:after {
-				z-index: 2;
-
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-
-				color: $white;
-			}
-			&:before {
-				content: 'Включить ЧБ';
-				left: 20px;
-			}
-			&:after {
-				content: 'Выключить ЧБ';
-				right: 20px;
-			}
-		}
-		label {
-			z-index: 1;
-			position: absolute;
-			top: 10px;
-			bottom: 10px;
-
-			border-radius: 20px;
-		}
-		&.switcher-2 {
-			overflow: hidden;
+			margin: 20px 0;
 			input {
-				transition: background-color 0s 0.5s;
-				&:before {
-					color: $black;
-				}
-				&:after {
-					color: $white;
-				}
-				&:checked {
-					background-color: $white;
-					& + label {
-						background: $white;
+				appearance: none;
 
-						animation: turn-on 0.5s ease-out;
-
-						@keyframes turn-on {
-							0% {
-								left: 100%;
-							}
-							100% {
-								left: 0%;
-							}
-						}
-					}
-				}
-				&:not(:checked) {
-					background: $black;
-					& + label {
-						background: $black;
-
-						animation: turn-off 0.5s ease-out;
-
-						@keyframes turn-off {
-							0% {
-								right: 100%;
-							}
-							100% {
-								right: 0%;
-							}
-						}
-					}
-				}
-			}
-			label {
-				top: 0px;
+				position: relative;
 
 				width: 200px;
 				height: 50px;
 				border-radius: 25px;
+
+				background-color: $black;
+				outline: none;
+
+				font-family: 'Amatic SC', serif;
+				font-weight: 700;
+				font-style: normal;
+				font-size: 20px;
+				&:before,
+				&:after {
+					z-index: 2;
+
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+
+					color: $white;
+				}
+				&:before {
+					content: 'Включить ЧБ';
+					left: 20px;
+				}
+				&:after {
+					content: 'Выключить ЧБ';
+					right: 20px;
+				}
 			}
+			label {
+				z-index: 1;
+				position: absolute;
+				top: 10px;
+				bottom: 10px;
+
+				border-radius: 20px;
+			}
+			&.switcher-2 {
+				overflow: hidden;
+				input {
+					transition: background-color 0s 0.5s;
+					&:before {
+						color: $black;
+					}
+					&:after {
+						color: $white;
+					}
+					&:checked {
+						background-color: $white;
+						& + label {
+							background: $white;
+
+							animation: turn-on 0.5s ease-out;
+
+							@keyframes turn-on {
+								0% {
+									left: 100%;
+								}
+								100% {
+									left: 0%;
+								}
+							}
+						}
+					}
+					&:not(:checked) {
+						background: $black;
+						& + label {
+							background: $black;
+
+							animation: turn-off 0.5s ease-out;
+
+							@keyframes turn-off {
+								0% {
+									right: 100%;
+								}
+								100% {
+									right: 0%;
+								}
+							}
+						}
+					}
+				}
+				label {
+					top: 0px;
+
+					width: 200px;
+					height: 50px;
+					border-radius: 25px;
+				}
+			}
+		}
+	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 30px;
+		background: #000;
+		padding-top: 2%;
+		padding-bottom: 10%;
+		background-image: url(/images/Block1_Back.png);
+		position: relative;
+
+		.remove-filter {
+			position: absolute;
+			top: 3%;
+			left: 42%;
+		}
+
+		.image-container {
+			display: flex;
+			justify-content: center;
+			cursor: pointer;
+
+			img {
+				height: 200px;
+				transition: transform 0.3s ease;
+			}
+		}
+
+		.grey-image {
+			filter: grayscale(1);
+			transition: filter 1s;
+
+			&:hover {
+				filter: grayscale(0);
+			}
+		}
+
+		.fullscreen {
+			display: flex;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.9);
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+
+			img {
+				max-width: 90%;
+				max-height: 90%;
+			}
+		}
+
+		.arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 40px;
+			color: #a1a1a1;
+			cursor: pointer;
+
+			&-left {
+				left: 20px;
+			}
+
+			&-right {
+				right: 20px;
+			}
+		}
+
+		@media (max-width: 1200px) {
+			grid-template-columns: 1fr 1fr;
+			padding-top: 2%;
+		}
+		@media (max-width: 760px) {
+			grid-template-columns: 1fr;
+			padding-top: 28%;
 		}
 	}
 </style>

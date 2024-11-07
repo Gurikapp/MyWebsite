@@ -4,6 +4,10 @@
 	import Article from '$lib/components/Article.svelte';
 </script>
 
+<svelte:head>
+	<title>Филиал Вброса</title>
+</svelte:head>
+
 <section class="articles">
 	<div class="navbar">
 		<div class="navbar-btns">
