@@ -48,6 +48,9 @@
 	.article img {
 		width: 500px;
 		margin-bottom: 16px;
+		@media (max-width: 400px) {
+					width: 90%;
+				}
 	}
 
 	.read-more {

@@ -386,21 +386,24 @@
 		gap: 20px;
 		padding: 10%;
 		background-image: url(/images/Block1_Back.png);
+		@media (max-width: 400px) {
+			padding-top: 25%;
+		}
 		.poems-h2 {
 			color: white;
 			font-family: 'Amatic SC', serif;
 			font-weight: 400;
 			font-style: normal;
 			font-size: 30px;
-            padding: 3% 0%;
-            a{
-                color: #fff;
-                transition: 300ms;
-                font-weight: 700;
-                &:hover{
-                    color: #d1d1d1;
-                }
-            }
+			padding: 3% 0%;
+			a {
+				color: #fff;
+				transition: 300ms;
+				font-weight: 700;
+				&:hover {
+					color: #d1d1d1;
+				}
+			}
 		}
 		.poems-component {
 			border: 1px solid #ffffff66;

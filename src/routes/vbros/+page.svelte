@@ -28,6 +28,9 @@
 		gap: 20px;
 		padding: 10%;
 		background-image: url(/images/Block1_Back.png);
+		@media (max-width: 400px) {
+					padding-top: 30%;
+				}
 		.navbar {
 			display: flex;
 			justify-content: center;
@@ -36,6 +39,10 @@
 				display: flex;
 				flex-direction: row;
 				gap: 10%;
+				@media (max-width: 400px) {
+					flex-direction: column;
+					gap: 20px;
+				}
 				button,
 				a {
 					color: #fff;
@@ -46,6 +53,9 @@
 					background: none;
 					white-space: nowrap;
                     transition: 500ms;
+					@media (max-width: 400px) {
+					font-size: 25px;
+				}
 					&:hover {
 						color: #d1d1d1;
 					}

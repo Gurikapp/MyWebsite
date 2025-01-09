@@ -64,9 +64,18 @@
 	}
 	@media (max-width: 700px) {
 		header {
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			padding-right: 8%;
+			padding-top: 3%;
 			.media-logo {
 				display: block;
+				grid-column-start: 1;
+				grid-row-start: 1;
+				grid-row-end: 4;
+			}
+			button{
+				font-size: 18px;
 			}
 			.main-logo {
 				display: none;
